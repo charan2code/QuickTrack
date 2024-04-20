@@ -5,11 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your JavaScript Playground</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   </head>
   <body>
-    <div id="main">
-      <h1>Welcome to KnowledgeHut upGrad!</h1>
-      
+    <header>
+      <h1 id="Title">QuickTrack</h1>
+     
+      <div id="mainButtons">
+        <button class="pageButton"><i class="fas fa-home"></i> HOME</button>
+        <button class="pageButton"><i class="fas fa-chart-bar"></i> DASHBOARD</button>
+      </div>
+    </header>
+    <section id="task">
+      <div id="task-contanier">
+        <div id="newtask-container">
+          <input id="taskTitle" type="text" placeholder="What are you working on?">
+          <button id="startButton">START</button>
+        </div>
+        <div id="addtask-container">
+          <button id="addtaskButton">+ ADD TASK</button>
+          <div id="manualtask">
+            <input id="manualtaskTitle" type="text" placeholder="What are you working on?">
+            <input id="FromTime" type="time" placeholder="HH:MM">
+            <p>-</p>
+            <input id="ToTime" type="time" placeholder="HH:MM">
+            <input id="date" type="date" placeholder="date">
+            <button id="addButton">ADD</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="InProgresTab">
+      <h1>In Progress</h1>
+      <div id="inProgressTask">
+        <div id="taskDetails-Container">
+          <div id="taskDetails">
+            <h1 id="taskTitle">Title</h1>
+            <div id="StartTime-Container">
+              <h2 id="StartTimeText">Start Time</h2>
+              <h1 id="StartTime">17:00</h1>
+            </div>
+          </div>
+          <div id="ElapsedTime-Container">
+            <h1 id="ElapsedTime">01:01:02</h1>
+          </div>
+        </div>
+
+        <button id="stopButton">STOP</button>
+      </div>
+    </section>
+    <hr/>
+    <section id="CompletedTab">
+      <h1>Completed Tasks</h1>
+      <div id="tasks">
+        <div id="eachTask">
+          <div id="taskDetails-Container">
+            <div id="taskDetails">
+              <h2 id="taskTitle">Title</h2>
+              <h1 id="TotalTime">3 hrs</h1>
+              
+            </div>
+            <div id="Time-Container">
+              <h1 id="date">01 Apr</h1>
+              <h1 id="StartTime">15:00</h1>
+              <p>-</p>
+              <h1 id="EndTime">17:00</h1>
+            </div>
+          </div>
+  
+          <button id="deleteButton">DELETE</button>
+        </div>
+      </div>
+    </section>
     <script type="module" src="js/index.js"></script>
   </body>
 </html>
