@@ -6,6 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const startTimeDisplay = document.getElementById("StartTime");
   const elapsedTimeDisplay = document.getElementById("ElapsedTime");
   const completedTasksContainer = document.getElementById("tasks");
+  const manualTaskTitleInput = document.getElementById("manualtaskTitle");
+  const fromTimeInput = document.getElementById("FromTime");
+  const toTimeInput = document.getElementById("ToTime");
+  const dateInput = document.getElementById("date");
+  const inProgressSection = document.getElementById("InProgresTab");
+  const inProgressText = document.getElementById("Inprogress-text");
 
   let startTime;
   let timerInterval;
@@ -16,6 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
     startTimeDisplay.textContent = formatTime(startTime);
     inProgressTaskTitle.textContent = `${taskTitleInput.value}`;
     timerInterval = setInterval(updateElapsedTime, 1000);
+    // Show In Progress Section
+    inProgressText.style.display = "block";
+    inProgressSection.style.display = "block";
   }
 
   // Function to stop the timer
@@ -31,6 +40,13 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     saveTask(taskDetails);
     displayCompletedTasks();
+    // Hide the in-progress section
+    inProgressSection.style.display = "none";
+    inProgressText.style.display = "none";
+    // Clear contents of the in-progress section
+    inProgressTaskTitle.textContent = "";
+    startTimeDisplay.textContent = "";
+    elapsedTimeDisplay.textContent = "";
   }
 
   // Function to update the elapsed time display
@@ -42,13 +58,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to format time in HH:MM format
   function formatTime(timestamp) {
-    console.log("Timestamp:", timestamp);
     const hours = String(timestamp.getHours()).padStart(2, "0");
-    console.log("Hours:", hours);
     const minutes = String(timestamp.getMinutes()).padStart(2, "0");
-    console.log("Mins:", minutes);
     return `${hours}:${minutes}`;
-}
+  }
 
   // Function to format elapsed time in HH:MM:SS format
   function formatElapsedTime(milliseconds) {
@@ -72,6 +85,29 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 
+  // Function to add a manual task
+  function addManualTask() {
+    const title = manualTaskTitleInput.value;
+    const fromTime = fromTimeInput.value;
+    const toTime = toTimeInput.value;
+    const date = dateInput.value;
+
+    const startDate = new Date(`${date}T${fromTime}`);
+    const endDate = new Date(`${date}T${toTime}`);
+
+    const elapsedTime = endDate - startDate;
+
+    const taskDetails = {
+      title: title,
+      startTime: startDate,
+      endTime: endDate,
+      elapsedTime: elapsedTime,
+    };
+
+    saveTask(taskDetails);
+    displayCompletedTasks();
+  }
+
   function deleteTask(index) {
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     tasks.splice(index, 1); // Remove task at the specified index
@@ -79,15 +115,43 @@ document.addEventListener("DOMContentLoaded", function () {
     displayCompletedTasks(); // Re-display tasks after deletion
   }
 
+  //Sorting Function
+  function sortTasks(tasks) {
+  tasks.sort((a, b) => {
+    const startDateA = new Date(a.startTime).setHours(0, 0, 0, 0);
+    const startDateB = new Date(b.startTime).setHours(0, 0, 0, 0);
+    const startTimeA = new Date(a.startTime).getTime();
+    const startTimeB = new Date(b.startTime).getTime();
+    const endTimeA = new Date(a.endTime).getTime();
+    const endTimeB = new Date(b.endTime).getTime();
+
+    // First, compare start dates
+    if (startDateA !== startDateB) {
+      return startDateB - startDateA;
+    }
+
+    // If start dates are equal, compare start times
+    if (startTimeA !== startTimeB) {
+      return startTimeB - startTimeA;
+    }
+
+    // If start times are equal, compare end times
+    return endTimeB - endTimeA;
+  });
+}
+
   // Function to display completed tasks from local storage
   function displayCompletedTasks() {
     completedTasksContainer.innerHTML = ""; // Clear existing tasks
     const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    tasks.forEach((task,index) => {
+    sortTasks(tasks);
+    
+    // Sort tasks by completion time in descending order
+    tasks.forEach((task, index) => {
       const taskList = document.createElement("ul");
       const startDate = new Date(task.startTime);
       const endDate = new Date(task.endTime);
-      
+
       taskList.innerHTML = `
         <li id="eachTask">
           <div id="completedtaskDetails-Container">
@@ -98,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div id="dateTime-Container">
               <h2 id="date">${formatDate(startDate)}</h2>
               <div id="Time-Container">
-                <h2 id="StartTime">${formatTime(startTime)}</h2>
+                <h2 id="StartTime">${formatTime(startDate)}</h2>
                 <p>-</p>
                 <h2 id="EndTime">${formatTime(endDate)}</h2>
               </div>
@@ -127,6 +191,11 @@ document.addEventListener("DOMContentLoaded", function () {
     taskTitleInput.disabled = false; // Enable the task input field
   });
 
+  // Event listener for ADD button click for manual task addition
+  document.getElementById("addButton").addEventListener("click", function () {
+    addManualTask();
+  });
+
   function attachDeleteButtonListeners() {
     const deleteButtons = document.querySelectorAll(".deleteButton");
     deleteButtons.forEach(button => {
@@ -138,6 +207,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   attachDeleteButtonListeners();
-  // Display completed tasks on page load 
+  // Display completed tasks on page load
   displayCompletedTasks();
 });
