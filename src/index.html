@@ -12,8 +12,8 @@
       <h1 id="Title">QuickTrack</h1>
      
       <div id="mainButtons">
-        <button class="pageButton"><i class="fas fa-home"></i> HOME</button>
-        <button class="pageButton"><i class="fas fa-chart-bar"></i> DASHBOARD</button>
+        <button id="homeButton" class="pageButton"><i class="fas fa-home"></i> HOME</button>
+        <button id="dashboardButton" class="pageButton"><i class="fas fa-chart-bar"></i> DASHBOARD</button>
       </div>
     </header>
     <section id="task">
@@ -43,14 +43,14 @@
         <div id="inProgressTask">
           <div id="taskDetails-Container">
             <div id="taskDetails">
-              <h1 id="progress-taskTitle">Title</h1>
+              <h1 id="progress-taskTitle"></h1>
               <div id="StartTime-Container">
                 <h2 id="StartTimeText">Start Time</h2>
-                <h2 id="StartTime">17:00</h1>
+                <h2 id="StartTime"></h1>
               </div>
             </div>
             <div id="ElapsedTime-Container">
-              <h1 id="ElapsedTime">01:01:02</h1>
+              <h1 id="ElapsedTime"></h1>
             </div>
           </div>
   
@@ -64,46 +64,7 @@
 
     <section id="CompletedTab">
       <div id="center-container">
-        <div id="tasks">
-          <div id="eachTask">
-            <div id="completedtaskDetails-Container">
-              <div id="taskDetails">
-                <h2 id="taskTitle">Title</h2>
-                <h2 id="TotalTime">Time Spent : 3 hrs</h1>
-                
-              </div>
-              <div id="dateTime-Container">
-                <h2 id="date">01 Apr</h1>
-                <div id="Time-Container">
-                  <h2 id="StartTime">15:00</h1>
-                  <p>-</p>
-                  <h2 id="EndTime">17:00</h1>
-                </div>
-              </div>
-            </div>
-    
-            <button id="deleteButton"><i class="fa fa-trash" aria-hidden="true"></i> DELETE</button>
-          </div>
-          <div id="eachTask">
-            <div id="completedtaskDetails-Container">
-              <div id="taskDetails">
-                <h2 id="taskTitle">Title</h2>
-                <h2 id="TotalTime">Time Spent : 3 hrs</h1>
-                
-              </div>
-              <div id="dateTime-Container">
-                <h2 id="date">01 Apr</h1>
-                <div id="Time-Container">
-                  <h2 id="StartTime">15:00</h1>
-                  <p>-</p>
-                  <h2 id="EndTime">17:00</h1>
-                </div>
-              </div>
-            </div>
-    
-            <button id="deleteButton"><i class="fa fa-trash" aria-hidden="true"></i> DELETE</button>
-          </div>
-        </div>
+        <div id="tasks"></div>
       </div>
       
     </section>
