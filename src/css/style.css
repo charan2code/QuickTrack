@@ -227,7 +227,7 @@ section {
   align-items: center;
 }
 
-#SectionHeader{
+.SectionHeader{
   color: #260894;
   text-align: center;
   font-size: 2rem;
@@ -376,7 +376,7 @@ hr{
 }
 
 
-#deleteButton {
+.deleteButton {
   height: 5rem;
   width: 15%;
   background-color: #202c97;
@@ -390,7 +390,7 @@ hr{
   margin-right:3rem ;
 }
 
-#deleteButton:hover {
+.deleteButton:hover {
   background-color: #3041e0;
 }
 

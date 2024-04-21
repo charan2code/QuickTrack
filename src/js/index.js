@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
       title: taskTitleInput.value,
       startTime: startTime,
       endTime: endTime,
-      elapsedTime: elapsedTime
+      elapsedTime: elapsedTime,
     };
     saveTask(taskDetails);
     displayCompletedTasks();
@@ -72,11 +72,18 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 
+  function deleteTask(index) {
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.splice(index, 1); // Remove task at the specified index
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    displayCompletedTasks(); // Re-display tasks after deletion
+  }
+
   // Function to display completed tasks from local storage
   function displayCompletedTasks() {
     completedTasksContainer.innerHTML = ""; // Clear existing tasks
     const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    tasks.forEach(task => {
+    tasks.forEach((task,index) => {
       const taskList = document.createElement("ul");
       const startDate = new Date(task.startTime);
       const endDate = new Date(task.endTime);
@@ -97,11 +104,13 @@ document.addEventListener("DOMContentLoaded", function () {
               </div>
             </div>
           </div>
-          <button id="deleteButton"><i class="fa fa-trash" aria-hidden="true"></i> DELETE</button>
+          <button class="deleteButton" data-index="${index}"><i class="fa fa-trash" aria-hidden="true"></i> DELETE</button>
         </li>
       `;
       completedTasksContainer.appendChild(taskList);
     });
+
+    attachDeleteButtonListeners();
   }
 
   // Event listener for START button click
@@ -118,6 +127,17 @@ document.addEventListener("DOMContentLoaded", function () {
     taskTitleInput.disabled = false; // Enable the task input field
   });
 
-  // Display completed tasks on page load
+  function attachDeleteButtonListeners() {
+    const deleteButtons = document.querySelectorAll(".deleteButton");
+    deleteButtons.forEach(button => {
+      button.addEventListener("click", function (e) {
+        const index = parseInt(e.target.dataset.index); // Extract index from data-index attribute
+        deleteTask(index);
+      });
+    });
+  }
+
+  attachDeleteButtonListeners();
+  // Display completed tasks on page load 
   displayCompletedTasks();
 });
