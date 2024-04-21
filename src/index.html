@@ -36,47 +36,76 @@
       </div>
     </section>
 
-    <section id="InProgresTab">
-      <h1>In Progress</h1>
-      <div id="inProgressTask">
-        <div id="taskDetails-Container">
-          <div id="taskDetails">
-            <h1 id="taskTitle">Title</h1>
-            <div id="StartTime-Container">
-              <h2 id="StartTimeText">Start Time</h2>
-              <h1 id="StartTime">17:00</h1>
-            </div>
-          </div>
-          <div id="ElapsedTime-Container">
-            <h1 id="ElapsedTime">01:01:02</h1>
-          </div>
-        </div>
+    <h1 id="SectionHeader">In Progress</h1>
 
-        <button id="stopButton">STOP</button>
-      </div>
-    </section>
-    <hr/>
-    <section id="CompletedTab">
-      <h1>Completed Tasks</h1>
-      <div id="tasks">
-        <div id="eachTask">
+    <section id="InProgresTab">
+      <div id="center-container">
+        <div id="inProgressTask">
           <div id="taskDetails-Container">
             <div id="taskDetails">
-              <h2 id="taskTitle">Title</h2>
-              <h1 id="TotalTime">3 hrs</h1>
-              
+              <h1 id="progress-taskTitle">Title</h1>
+              <div id="StartTime-Container">
+                <h2 id="StartTimeText">Start Time</h2>
+                <h2 id="StartTime">17:00</h1>
+              </div>
             </div>
-            <div id="Time-Container">
-              <h1 id="date">01 Apr</h1>
-              <h1 id="StartTime">15:00</h1>
-              <p>-</p>
-              <h1 id="EndTime">17:00</h1>
+            <div id="ElapsedTime-Container">
+              <h1 id="ElapsedTime">01:01:02</h1>
             </div>
           </div>
   
-          <button id="deleteButton">DELETE</button>
+          <button id="stopButton">STOP</button>
         </div>
       </div>
+    </section>
+    <hr/>
+
+    <h1 id="SectionHeader">Completed Tasks</h1>
+
+    <section id="CompletedTab">
+      <div id="center-container">
+        <div id="tasks">
+          <div id="eachTask">
+            <div id="taskDetails-Container">
+              <div id="taskDetails">
+                <h2 id="taskTitle">Title</h2>
+                <h2 id="TotalTime">Total Time : 3 hrs</h1>
+                
+              </div>
+              <div id="dateTime-Container">
+                <h2 id="date">01 Apr</h1>
+                <div id="Time-Container">
+                  <h2 id="StartTime">15:00</h1>
+                  <p>-</p>
+                  <h2 id="EndTime">17:00</h1>
+                </div>
+              </div>
+            </div>
+    
+            <button id="deleteButton">DELETE</button>
+          </div>
+          <div id="eachTask">
+            <div id="taskDetails-Container">
+              <div id="taskDetails">
+                <h2 id="taskTitle">Title</h2>
+                <h2 id="TotalTime">Total Time : 3 hrs</h1>
+                
+              </div>
+              <div id="dateTime-Container">
+                <h2 id="date">01 Apr</h1>
+                <div id="Time-Container">
+                  <h2 id="StartTime">15:00</h1>
+                  <p>-</p>
+                  <h2 id="EndTime">17:00</h1>
+                </div>
+              </div>
+            </div>
+    
+            <button id="deleteButton">DELETE</button>
+          </div>
+        </div>
+      </div>
+      
     </section>
     <script type="module" src="js/index.js"></script>
   </body>
