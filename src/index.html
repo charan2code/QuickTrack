@@ -16,20 +16,23 @@
         <button id="dashboardButton" class="pageButton"><i class="fas fa-chart-bar"></i> DASHBOARD</button>
       </div>
     </header>
+    <section class="user-message" >
+      <div id="userMessage"></div>
+    </section>
     <section id="task">
       <div id="task-contanier">
         <div id="newtask-container">
-          <input id="taskTitle" type="text" placeholder="What are you working on?">
+          <input id="taskTitle" type="text" placeholder="What are you working on?" autocomplete="off">
           <button id="startButton"><i class="fa fa-play-circle" aria-hidden="true"></i> START</button>
         </div>
         <div id="addtask-container">
           <button id="addtaskButton"><i class="fa fa-plus-circle" aria-hidden="true"></i> ADD TASK</button>
           <div id="manualtask">
-            <input id="manualtaskTitle" type="text" placeholder="What are you working on?">
-            <input id="FromTime" type="time" placeholder="HH:MM">
+            <input id="manualtaskTitle" type="text" placeholder="What are you working on?" autocomplete="off">
+            <input id="FromTime" type="time" placeholder="HH:MM" autocomplete="off">
             <p>-</p>
-            <input id="ToTime" type="time" placeholder="HH:MM">
-            <input id="date" type="date" placeholder="date">
+            <input id="ToTime" type="time" placeholder="HH:MM" autocomplete="off">
+            <input id="date" type="date" placeholder="date" autocomplete="off">
             <button id="addButton">ADD</button>
           </div>
         </div>
@@ -58,9 +61,12 @@
         </div>
       </div>
     </section>
+    
+    
     <hr/>
+    <h1 class="SectionHeader" id="Completed-text" >Completed Tasks</h1>
+  
 
-    <h1 class="SectionHeader" id="Completed-text">Completed Tasks</h1>
 
     <section id="CompletedTab">
       <div id="center-container">

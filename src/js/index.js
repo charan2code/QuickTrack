@@ -12,17 +12,39 @@ document.addEventListener("DOMContentLoaded", function () {
   const dateInput = document.getElementById("date");
   const inProgressSection = document.getElementById("InProgresTab");
   const inProgressText = document.getElementById("Inprogress-text");
+  const userMessage = document.getElementById("userMessage");
+  const addTaskButton = document.getElementById("addtaskButton");
+  const manualTaskSection = document.getElementById("manualtask");
+
+
 
   let startTime;
   let timerInterval;
+  let currentTaskTitle;
+
+  //hiding Add Task Manually Section Display
+  manualTaskSection.style.display = "none";
+
+  //Displaying and Clearing User Error Message
+  function displayUserMessage(message) {
+    userMessage.textContent = message;
+    userMessage.style.display = "block";
+  }
+
+  function clearUserMessage() {
+    userMessage.textContent = "";
+    userMessage.style.display = "none";
+  }
 
   // Function to start the timer
   function startTimer() {
     startTime = new Date();
     startTimeDisplay.textContent = formatTime(startTime);
-    inProgressTaskTitle.textContent = `${taskTitleInput.value}`;
+    currentTaskTitle = taskTitleInput.value; 
+    inProgressTaskTitle.textContent = currentTaskTitle;
     timerInterval = setInterval(updateElapsedTime, 1000);
-    // Show In Progress Section
+
+    // Show In-Progress Section
     inProgressText.style.display = "block";
     inProgressSection.style.display = "block";
   }
@@ -32,17 +54,20 @@ document.addEventListener("DOMContentLoaded", function () {
     clearInterval(timerInterval);
     const endTime = new Date();
     const elapsedTime = endTime - startTime;
+    const taskTitle = taskTitleInput.value;
     const taskDetails = {
-      title: taskTitleInput.value,
+      title: currentTaskTitle,
       startTime: startTime,
       endTime: endTime,
       elapsedTime: elapsedTime,
     };
     saveTask(taskDetails);
     displayCompletedTasks();
+
     // Hide the in-progress section
     inProgressSection.style.display = "none";
     inProgressText.style.display = "none";
+
     // Clear contents of the in-progress section
     inProgressTaskTitle.textContent = "";
     startTimeDisplay.textContent = "";
@@ -92,6 +117,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const toTime = toTimeInput.value;
     const date = dateInput.value;
 
+    if (!title || !fromTime || !toTime || !date) {
+      displayUserMessage("All fields are required to add a manual task.");
+      return;
+    }
+    clearUserMessage();
+
     const startDate = new Date(`${date}T${fromTime}`);
     const endDate = new Date(`${date}T${toTime}`);
 
@@ -108,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
     displayCompletedTasks();
   }
 
+  //Delete Function
   function deleteTask(index) {
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     tasks.splice(index, 1); // Remove task at the specified index
@@ -118,14 +150,15 @@ document.addEventListener("DOMContentLoaded", function () {
   //Sorting Function
   function sortTasks(tasks) {
   tasks.sort((a, b) => {
-    const startDateA = new Date(a.startTime).setHours(0, 0, 0, 0);
-    const startDateB = new Date(b.startTime).setHours(0, 0, 0, 0);
+    //Setting time to 00:00:00:00 of both A and B to compare dates first 
+    const startDateA = new Date(a.startTime).setHours(0, 0, 0, 0); 
+    const startDateB = new Date(b.startTime).setHours(0, 0, 0, 0); 
     const startTimeA = new Date(a.startTime).getTime();
     const startTimeB = new Date(b.startTime).getTime();
     const endTimeA = new Date(a.endTime).getTime();
     const endTimeB = new Date(b.endTime).getTime();
 
-    // First, compare start dates
+    // First compare start dates
     if (startDateA !== startDateB) {
       return startDateB - startDateA;
     }
@@ -175,38 +208,67 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     attachDeleteButtonListeners();
+
   }
 
   // Event listener for START button click
   startButton.addEventListener("click", function () {
+    if (!taskTitleInput.value) {
+      displayUserMessage("Please enter a task title.");
+      return; // Exit the function if title is not entered
+    }
+    clearUserMessage();
     startTimer();
-    startButton.disabled = true; // Disable the START button
+    // Disable the START button and Tast Tiltle Input
+    startButton.disabled = true; 
+    startButton.style.backgroundColor = "#222"; 
+    startButton.style.pointerEvents = "none"; 
     taskTitleInput.disabled = true; // Disable the task input field
+    taskTitleInput.value = ""; 
   });
 
   // Event listener for STOP button click
   stopButton.addEventListener("click", function () {
     stopTimer();
-    startButton.disabled = false; // Enable the START button
-    taskTitleInput.disabled = false; // Enable the task input field
+    // Enable the START button and Tast Tiltle Input
+    startButton.disabled = false; 
+    startButton.style.backgroundColor = ""; 
+    startButton.style.pointerEvents = "";
+    taskTitleInput.disabled = false; 
   });
 
   // Event listener for ADD button click for manual task addition
   document.getElementById("addButton").addEventListener("click", function () {
     addManualTask();
+    manualTaskTitleInput.value= "";
+    fromTimeInput.value= "";
+    toTimeInput.value= "";
+    dateInput.value= "";
   });
 
+  // Event listener for the "ADD TASK" button click
+  addTaskButton.addEventListener("click", function () {
+    // Toggle the visibility of the manual task section
+    if (manualTaskSection.style.display === "none") {
+      manualTaskSection.style.display = "flex";
+    } else {
+      manualTaskSection.style.display = "none";
+    }
+  });
+
+  // Adding index to all delete buttons
   function attachDeleteButtonListeners() {
     const deleteButtons = document.querySelectorAll(".deleteButton");
     deleteButtons.forEach(button => {
       button.addEventListener("click", function (e) {
-        const index = parseInt(e.target.dataset.index); // Extract index from data-index attribute
+        const index = parseInt(e.target.dataset.index); 
         deleteTask(index);
       });
     });
   }
 
   attachDeleteButtonListeners();
+
   // Display completed tasks on page load
   displayCompletedTasks();
 });

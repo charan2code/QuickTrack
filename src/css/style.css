@@ -25,6 +25,29 @@ header {
   align-content: center;
 }
 
+#userMessage{
+  text-align: center;
+  left: 50%;
+  width:88%;
+  background-color: #A0153E;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 5%;
+  z-index: 1000;
+  font-size: 1.5rem;
+  animation: flash 1s infinite alternate;
+  display:none;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 5;
+  }
+}
 
 #Title {
   font-family: "Titillium Web", sans-serif;
@@ -195,6 +218,12 @@ header {
   transition: all 0.1s;
 }
 
+/* to disable and enable start button */
+.disabled-start{
+  color: #222; 
+  transform: none; 
+}
+
 #addtaskButton:hover,
 #addButton:hover{
   background-color: #3041e0;
@@ -339,6 +368,7 @@ hr{
   box-shadow: rgba(89, 88, 88, 0.35) 0px 5px 25px;
   border: 2px solid #A0153E;
 }
+
 
 #completedtaskDetails-Container{
   width:80%;
