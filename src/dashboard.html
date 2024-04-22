@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOME | QuickTrack</title>
+    <link rel="stylesheet" href="css/dashboardstyle.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+    <script type="module" src="js/dashboard.js"></script> 
+  </head>
+<body>
+    <header>
+        <h1 id="Title">QuickTrack</h1>
+       
+        <div id="mainButtons">
+          <a href="index.html" id="homeButton" class="pageButton"><i class="fas fa-home"></i> HOME</a>
+          <a href="dashboard.html" id="dashboardButton" class="pageButton"><i class="fas fa-chart-bar"></i> DASHBOARD</a>
+        </div>
+    </header>
+
+    <section >
+        <div id="barGraphSection">
+            <div id="averageTime-container">
+                <div id="avgtimeText"><h1>Average Time</h1></div>
+                <div id="avgtime"><h1>17:00 hrs</h1></div>
+                <div><p>Average Time of Task Logged in per day over the last week</p></div>
+            </div>
+            <div id="graphcontainer">
+                <canvas id="barGraph"></canvas>
+            </div>
+        </div>
+    </section>
+    </body>
+ </body>
+ </html>

@@ -1,40 +1,587 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
-* {
-  font-family: 'Open Sans', sans-serif;
+
+body, h1, h2, p, button, input {
+  margin: 0;
+  padding: 0;
+  font-family:"Titillium Web", sans-serif;
+  color: #fff;
+  font-size: 16px;
 }
 
-html,
+a {
+  text-decoration: none; 
+  color: inherit; 
+}
+
 body {
-  margin: 0px;
-  padding: 0px;
+  background: radial-gradient(circle at center, #FF9398 , #2779a7);
+  
 }
 
-#main {
-  width: 100vw;
-  height: 100vh;
+header {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  text-align: center;
+  justify-content: space-between;
+  align-content: center;
+}
+
+#userMessage{
+  text-align: center;
+  left: 50%;
+  width:88%;
+  background-color: #A0153E;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 5%;
+  z-index: 1000;
+  font-size: 1.5rem;
+  animation: flash 1s infinite alternate;
+  display:none;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 5;
+  }
+}
+
+#Title {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #1e0578;
+  font-size: 80px;
+  font-size: 5rem;
+  margin: 0;
+}
+
+#mainButtons {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: center;
+}
+
+.pageButton {
+  width: 40%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  padding: 10px 20px;
+  border: 3px solid #A0153E ;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size:2rem;
+}
+
+.pageButton:hover{
+  transform:scale(1.1);
+  background-color: #A0153E;
+  color: #222;
+  transition: all 0.1s;
+}
+
+#task-contanier {
   display: flex;
   flex-direction: column;
+  justify-content:space-evenly;
+  align-items: center;
+  height:15rem;
+}
+
+#newtask-container
+{
+  margin-bottom: 10px;
+  height: 50%;
+  width: 90%;
+  display: flex;
+  align-content: center;
+}
+
+#addtask-container {
+  margin-bottom: 15px;
+  height: 50%;
+  width: 90%;
+}
+
+#manualtask{
+  display: flex;
+  margin-top: 10px;
+  height: 50%;
+  justify-content:space-between;
+  align-content: center;
+  align-items: center;
+}
+
+#manualtaskTitle{
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  width: 40%;
+  height: 70%;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-right: 5px;
+  border: 1px solid #A0153E;
+}
+
+#FromTime,#ToTime,#date{
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  width: 15%;
+  height: 70%;
+  font-size: 30px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-right: 5px;
+  border: 1px solid #A0153E;
+}
+
+#taskTitle{
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border: 1px solid #A0153E;
+  border-radius: 5px;
+  padding: 10px;
+  width: 80%;
+  height: 70%;
+  font-size: 2.5rem;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+}
+
+#manualtask p{
+ 
+  font-size: 4rem;
+  margin-right: 5px;
+
+}
+
+#startButton
+{
+  background-color: #A0153E;
+  color: #ffffff;
+  border: none ;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 20%;
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#addtaskButton{
+  background-color: #202c97;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 20%;
+  height: 50% ;
+  font-size: 1.5rem;
+  font-weight: 400;
+  
+}
+
+#addButton{
+  background-color: #202c97;
+  color: #ffffff;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  width: 10%;
+  height: 100%;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+
+#startButton:hover,
+#stopButton:hover,
+#deleteButton:hover {
+  background-color: #df1e58;
+  transform: scale(1.025);
+  transition: all 0.1s;
+}
+
+/* to disable and enable start button */
+.disabled-start{
+  color: #222; 
+  transform: none; 
+}
+
+#addtaskButton:hover,
+#addButton:hover{
+  background-color: #3041e0;
+  transform: scale(1.025);
+  transition: all 0.1s;
+}
+
+
+section {
+  padding: 15px;
+}
+
+
+#InProgresTab h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+#InProgresTab h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+#center-container{
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-p {
-  margin: 4px;
-}
-
-code {
-  font-family: monospace;
-  font-size: 1rem;
-  background-color: rgb(219, 219, 219);
-  padding: 2px;
-}
-
-#api-status {
-  margin-top: 100px;
-  font-family: monospace;
+.SectionHeader{
+  color: #260894;
   text-align: center;
-  font-size: 1rem;
-  background-color: rgb(219, 219, 219);
-  padding: 10px;
+  font-size: 2rem;
+  margin:0.5rem 0;
 }
+
+#Inprogress-text,#InProgresTab{
+  display:none;
+}
+
+#inProgressTask {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  width: 89%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#inProgressTask:hover{
+  transform: scale(1.05);
+  transition: all 0.5;
+}
+
+#taskDetails-Container {
+  display: flex;
+  width:70%;
+  align-items: center;
+}
+
+#taskDetails {
+  flex: 1;
+}
+
+#progress-taskTitle{
+  color: #ffffff;
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 2px solid #A0153E ;
+}
+
+#StartTime-container{
+  display: flex;
+}
+
+
+#ElapsedTime-Container {
+  margin-left: 8rem;
+  background-color: rgb(0, 0, 0, 0.2);
+  height: 8rem;
+  width: 20rem;
+  align-content: center;
+  border: 2px solid #A0153E ;
+}
+
+
+#stopButton {
+  height: 7rem;
+  width: 18%;
+  background-color: #A0153E;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 2.5rem;
+  padding: 10px 20px;
+  margin-right:30px;
+  transition: background-color 0.3s;
+}
+
+#stopButton:hover {
+  background-color: #df1e58;
+}
+
+
+hr{
+  width: 90%;
+  height: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-bottom: 1rem;
+}
+
+
+
+#CompletedTab h2 {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+
+#tasks{
+  width: 89.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#eachTask {
+  background-color: rgba(0, 0, 0, 0.4); 
+  border-radius: 10px;
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(89, 88, 88, 0.35) 0px 5px 25px;
+  border: 2px solid #A0153E;
+}
+
+
+#completedtaskDetails-Container{
+  width:80%;
+  display: flex;
+  align-items: center;
+}
+
+#taskDetails {
+  flex: 1;
+}
+
+#TotalTime {
+  color: #fff;
+  font-size: 2rem;
+  margin-left: 10px;
+}
+
+#dateTime-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  margin-right: 5rem;
+}
+
+#dateTime-Container h2{
+  width:80%;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+#Time-Container {
+  width:100%;
+  display: flex;
+}
+
+#Time-Container h2,#Time-Container p{
+ font-size: 2rem;
+}
+
+
+.deleteButton {
+  height: 5rem;
+  width: 15%;
+  background-color: #202c97;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 2rem;
+  padding: 10px 20px;
+  transition: background-color 0.3s;
+  margin-right:3rem ;
+}
+
+.deleteButton:hover {
+  background-color: #3041e0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+
+/* Media queries for mobile devices */
+@media only screen and (max-width: 600px) {
+
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #Title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  #mainButtons {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .pageButton {
+    width: 30%; 
+    margin-bottom: 0.5rem; 
+    font-size: 20px;
+  }
+
+  /* Task section */
+  #task-contanier {
+    height: auto;
+    padding: 1rem;
+  }
+
+  #newtask-container,
+  #addtask-container,
+  #manualtask {
+    width: 100%;
+    flex-direction: row;
+  }
+
+  #taskTitle,
+  #manualtaskTitle,
+  #FromTime,
+  #ToTime,
+  #date {
+    width: 95%;
+    font-size: 1.5rem;
+  }
+
+  #startButton {
+    width: 50%; 
+    font-size: 1.5rem; 
+  }
+
+  #addtaskButton
+   {
+    width: 50%;
+    font-size: 1rem;
+  }
+
+  #addButton{
+    width: 50%;
+    font-size: 1rem;
+    height: 4rem;
+  }
+  #taskDetails {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #taskDetails-Container {
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  #InProgresTab,
+  #CompletedTab {
+    width: 85%; 
+    font-size: 1rem;
+  }
+  #inProgressTask {
+    width: 85%;
+  }
+
+  #inProgressTask h1,
+  #inProgressTask h2,
+  #inProgressTask p {
+    font-size: 1rem;
+  }
+
+  #stopButton {
+    font-size: 1rem; 
+    padding: 5px 10px; 
+    height: 50%;
+  }
+
+  #ElapsedTime-Container {
+    width: 50%; 
+    height: 3rem; 
+    
+  }
+  #eachTask {
+    width: 100%;
+    padding: 1rem; 
+  }
+
+  #TotalTime {
+    font-size: 1rem;
+  }
+  
+  .SectionHeader {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  #completedtaskDetails-Container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%;
+  }
+
+  #dateTime-Container 
+  {
+    flex-direction: column;
+    text-align: center;
+    margin-left: 1.5rem;
+    flex-wrap: wrap;
+  }
+  #dateTime-Container h2{
+    width:80%;
+    text-align: right;
+    font-size: 1rem;
+  }
+  #Time-Container h2,#Time-Container p{
+    font-size: 1rem;
+  }
+
+  #Time-Container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .deleteButton {
+    font-size: 0.5rem;
+    height:50%;
+  }}

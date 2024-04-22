@@ -3,18 +3,79 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your JavaScript Playground</title>
+    <title>HOME | QuickTrack</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+    <script type="module" src="js/index.js"></script> 
   </head>
   <body>
-    <div id="main">
-      <h1>Welcome to KnowledgeHut upGrad!</h1>
-      <p>You can start by editing the <code>src/index.html</code> , <code>src/js/index.js</code> and <code>src/css/style.css</code></p>
-      <p>To run the development server, run <code>npm run dev</code></p>
-      <p>To produce a build version that you can deploy online, run <code>npm run build</code></p>
-      <p>To view the built edition of your app, run <code>npm run preview</code></p>
-      <div id="api-status">You are running the app in production mode</div>
-    </div>
-    <script type="module" src="js/index.js"></script>
+    <header>
+      <h1 id="Title">QuickTrack</h1>
+     
+      <div id="mainButtons">
+        <a href="index.html" id="homeButton" class="pageButton"><i class="fas fa-home"></i> HOME</a>
+        <a href="dashboard.html" id="dashboardButton" class="pageButton"><i class="fas fa-chart-bar"></i> DASHBOARD</a>
+      </div>
+    </header>
+    <section class="user-message" >
+      <div id="userMessage"></div>
+    </section>
+    <section id="task">
+      <div id="task-contanier">
+        <div id="newtask-container">
+          <input id="taskTitle" type="text" placeholder="What are you working on?" autocomplete="off">
+          <button id="startButton"><i class="fa fa-play-circle" aria-hidden="true"></i> START</button>
+        </div>
+        <div id="addtask-container">
+          <button id="addtaskButton"><i class="fa fa-plus-circle" aria-hidden="true"></i> ADD TASK</button>
+          <div id="manualtask">
+            <input id="manualtaskTitle" type="text" placeholder="What are you working on?" autocomplete="off">
+            <input id="FromTime" type="time" placeholder="HH:MM" autocomplete="off">
+            <p>-</p>
+            <input id="ToTime" type="time" placeholder="HH:MM" autocomplete="off">
+            <input id="date" type="date" placeholder="date" autocomplete="off">
+            <button id="addButton">ADD</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <h1 class="SectionHeader" id="Inprogress-text">In Progress</h1>
+
+    <section id="InProgresTab">
+      <div id="center-container">
+        <div id="inProgressTask">
+          <div id="taskDetails-Container">
+            <div id="taskDetails">
+              <h1 id="progress-taskTitle"></h1>
+              <div id="StartTime-Container">
+                <h2 id="StartTimeText">Start Time</h2>
+                <h2 id="StartTime"></h1>
+              </div>
+            </div>
+            <div id="ElapsedTime-Container">
+              <h1 id="ElapsedTime"></h1>
+            </div>
+          </div>
+  
+          <button id="stopButton"><i class="fa fa-stop-circle" aria-hidden="true"></i> STOP</button>
+        </div>
+      </div>
+    </section>
+    
+    
+    <hr/>
+    <h1 class="SectionHeader" id="Completed-text" >Completed Tasks</h1>
+  
+
+
+    <section id="CompletedTab">
+      <div id="center-container">
+        <div id="tasks"></div>
+      </div>
+      
+    </section>
+
   </body>
 </html>
