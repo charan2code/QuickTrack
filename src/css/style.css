@@ -10,6 +10,10 @@ body, h1, h2, p, button, input {
   font-size: 16px;
 }
 
+a {
+  text-decoration: none; 
+  color: inherit; 
+}
 /* Global styles */
 body {
   background: radial-gradient(circle at center, #FF9398 , #2779a7);
@@ -76,11 +80,11 @@ header {
   border: 3px solid #A0153E ;
   border-radius: 5px;
   cursor: pointer;
-  font-size:1.5rem;
+  font-size:2rem;
 }
 
 .pageButton:hover{
-  transform:scale(1.2);
+  transform:scale(1.1);
   background-color: #A0153E;
   color: #222;
   transition: all 0.1s;
