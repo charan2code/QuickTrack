@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
-/* Resetting default browser styles */
+
 body, h1, h2, p, button, input {
   margin: 0;
   padding: 0;
@@ -14,7 +14,7 @@ a {
   text-decoration: none; 
   color: inherit; 
 }
-/* Global styles */
+
 body {
   background: radial-gradient(circle at center, #FF9398 , #2779a7);
   
@@ -59,7 +59,7 @@ header {
   font-style: normal;
   color: #1e0578;
   font-size: 80px;
-  font-size: 5rem; /* Set font size using rem units */
+  font-size: 5rem;
   margin: 0;
 }
 
@@ -272,7 +272,7 @@ section {
 }
 
 #inProgressTask {
-  background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   width: 89%;
   padding: 20px;
@@ -361,7 +361,7 @@ hr{
 }
 
 #eachTask {
-  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.4); 
   border-radius: 10px;
   width: 100%;
   padding: 20px;
@@ -440,3 +440,148 @@ ul {
 }
 
 
+/* Media queries for mobile devices */
+@media only screen and (max-width: 600px) {
+
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #Title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  #mainButtons {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .pageButton {
+    width: 30%; 
+    margin-bottom: 0.5rem; 
+    font-size: 20px;
+  }
+
+  /* Task section */
+  #task-contanier {
+    height: auto;
+    padding: 1rem;
+  }
+
+  #newtask-container,
+  #addtask-container,
+  #manualtask {
+    width: 100%;
+    flex-direction: row;
+  }
+
+  #taskTitle,
+  #manualtaskTitle,
+  #FromTime,
+  #ToTime,
+  #date {
+    width: 95%;
+    font-size: 1.5rem;
+  }
+
+  #startButton {
+    width: 50%; 
+    font-size: 1.5rem; 
+  }
+
+  #addtaskButton
+   {
+    width: 50%;
+    font-size: 1rem;
+  }
+
+  #addButton{
+    width: 50%;
+    font-size: 1rem;
+    height: 4rem;
+  }
+  #taskDetails {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #taskDetails-Container {
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  #InProgresTab,
+  #CompletedTab {
+    width: 85%; 
+    font-size: 1rem;
+  }
+  #inProgressTask {
+    width: 85%;
+  }
+
+  #inProgressTask h1,
+  #inProgressTask h2,
+  #inProgressTask p {
+    font-size: 1rem;
+  }
+
+  #stopButton {
+    font-size: 1rem; 
+    padding: 5px 10px; 
+    height: 50%;
+  }
+
+  #ElapsedTime-Container {
+    width: 50%; 
+    height: 3rem; 
+    
+  }
+  #eachTask {
+    width: 100%;
+    padding: 1rem; 
+  }
+
+  #TotalTime {
+    font-size: 1rem;
+  }
+  
+  .SectionHeader {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  #completedtaskDetails-Container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%;
+  }
+
+  #dateTime-Container 
+  {
+    flex-direction: column;
+    text-align: center;
+    margin-left: 1.5rem;
+    flex-wrap: wrap;
+  }
+  #dateTime-Container h2{
+    width:80%;
+    text-align: right;
+    font-size: 1rem;
+  }
+  #Time-Container h2,#Time-Container p{
+    font-size: 1rem;
+  }
+
+  #Time-Container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .deleteButton {
+    font-size: 0.5rem;
+    height:50%;
+  }}
