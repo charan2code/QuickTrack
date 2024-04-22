@@ -7,6 +7,13 @@ function retrieveTasks() {
   }
 }
 
+function formatavgtime(time){
+  const totalmins = time*60;
+  const hr = Math.floor(totalmins/60);
+  const mins = Math.floor(totalmins%60);
+  return `${hr} Hr ${mins} Mins`;
+}
+
 function formatDate(timestamp) {
   const day = String(timestamp.getDate()).padStart(2, "0");
   const month = timestamp.toLocaleString('default', { month: 'short' });
@@ -14,10 +21,9 @@ function formatDate(timestamp) {
 }
 
 function updateBarGraph(tasks,barGraphCanvas) {
-    // Check if window.barGraph is defined and is an instance of Chart
+    // Check if window.barGraph is definedt
     if (window.barGraph instanceof Chart) {
-      // Destroy existing chart
-      window.barGraph.destroy();
+            window.barGraph.destroy();
     }
   
     // Get today's date
@@ -30,7 +36,7 @@ function updateBarGraph(tasks,barGraphCanvas) {
     const sevenDaysAgo = new Date(today);
     sevenDaysAgo.setDate(today.getDate() - 6);
   
-    // Initialize an array to store total time spent for each day
+    
     const data = Array(7).fill(0);
   
     // Loop through tasks and sum up time spent for each day
@@ -44,43 +50,53 @@ function updateBarGraph(tasks,barGraphCanvas) {
         data[6] += task.elapsedTime / (60 * 60 * 1000);
       }
     });
-  
-    // Prepare labels for the bar graph (last 7 days)
+    
+    
+    // Labels for Bar Graph
     const labels = [];
+    let totalHours = 0;
     for (let i = 0; i < 7; i++) {
       const day = new Date(sevenDaysAgo);
       day.setDate(sevenDaysAgo.getDate() + i);
       labels.push(formatDate(day));
+      totalHours += data[i];
+    }
+    // Calculate the average time per day
+    const averageTimePerDay = totalHours / 7;
+
+    const averageTimeElement = document.getElementById("avgtime");
+    if (averageTimeElement) {
+        averageTimeElement.innerHTML = `<h1>${formatavgtime(averageTimePerDay)}</h1>`;
     }
   
-    // Create the bar graph
-    window.barGraph = new Chart(barGraphCanvas, {
-      type: "bar",
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: "Time Spent (in hours)",
-            data: data,
-            backgroundColor: "#3e95cd",
-          },
-        ],
+    // Bar graph using chart.js
+  window.barGraph = new Chart(barGraphCanvas, {
+  type: "bar", 
+  data: {
+    labels: labels, 
+    datasets: [
+      {
+        label: "Time Spent (in hours)", 
+        data: data, 
+        backgroundColor: "#1e0578", 
       },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: "Time Spent (hours)",
-            },
-            ticks: {
-              stepSize: 1, // Display ticks in steps of 1 hour
-            },
-          },
+    ],
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true, 
+        title: {
+          display: true,
+          text: "Time Spent (hours)", 
+        },
+        ticks: {
+          stepSize: 1, 
         },
       },
-    });
+    }
+  },
+});
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -88,4 +104,4 @@ document.addEventListener("DOMContentLoaded", function () {
   const tasks = retrieveTasks();
   console.log(tasks);
   updateBarGraph(tasks,barGraphCanvas);
-})
+});
